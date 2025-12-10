@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ReactiveFormsModule } from '@angular/forms';
+import { Router } from '@angular/router'; // Importar Router
+import { AuthService } from '../../services/auth.service'; // Ajuste o caminho se necessário
 
 @Component({
   selector: 'app-login',
@@ -10,7 +11,36 @@ import { ReactiveFormsModule } from '@angular/forms';
 })
 export class LoginComponent {
   loginForm = new FormGroup({
-    CPF: new FormControl('', Validators.required),
-    Senha: new FormControl('', Validators.required),
+    cpf: new FormControl('', Validators.required),
+    senha: new FormControl('', Validators.required),
   });
+
+  constructor(private authService: AuthService, private router: Router) {}
+
+  logar() {
+    if (this.loginForm.invalid) return;
+
+    const loginData = {
+      cpf: this.loginForm.get('cpf')?.value || '',
+      senha: this.loginForm.get('senha')?.value || '',
+    };
+
+    console.log('Enviando para o Java:', loginData);
+
+    this.authService.login(loginData).subscribe({
+      next: (response) => {
+        if (response.role === 'ROLE_GERENTE') {
+          this.router.navigate(['/gerente']);
+        } else if (response.role === 'ROLE_ESTOQUISTA') {
+          this.router.navigate(['/estoquista']);
+        } else {
+          alert('Perfil não autorizado ou desconhecido');
+        }
+      },
+      error: (err) => {
+        console.error('Erro:', err);
+        alert('Usuário ou senha inválidos!');
+      },
+    });
+  }
 }
