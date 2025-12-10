@@ -27,4 +27,8 @@ export class ProdutoServiceService {
   excluirProduto(id: string): Observable<void> { 
     return this.http.delete<void>(`${this.baseUrl}/${id}`, { withCredentials: true });
   }
+
+  criarProduto(produto: any) {
+    return this.http.post(this.baseUrl, produto, { withCredentials: true });
+  }
 }

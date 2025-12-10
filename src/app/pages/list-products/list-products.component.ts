@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthService } from '../../services/auth.service';
+
 import {
   ProdutoServiceService,
   Produto,
@@ -14,7 +17,11 @@ export class ListProductsComponent implements OnInit {
   produtos: Produto[] = [];
   produtosFiltrados: Produto[] = [];
 
-  constructor(private produtoService: ProdutoServiceService) {}
+  constructor(
+    private produtoService: ProdutoServiceService,
+    private authService: AuthService,   
+    private router: Router              
+  ) {}
 
   ngOnInit(): void {
     this.produtoService.listarProdutos().subscribe({
@@ -43,6 +50,7 @@ export class ListProductsComponent implements OnInit {
       },
     });
   }
+
   filtrar(event: Event) {
     const input = event.target as HTMLInputElement;
     const valor = input.value.toLowerCase();
@@ -58,5 +66,24 @@ export class ListProductsComponent implements OnInit {
         produto.categoria.toLowerCase().includes(valor)
       );
     });
+  }
+
+  irParaCadastro() {
+    const role = this.authService.getRole();
+
+    if (!role) {
+      console.error('Nenhum role encontrado. Usuário não está logado.');
+      return;
+    }
+
+    if (role === 'ROLE_GERENTE') {
+      this.router.navigate(['/gerente/add-product']);
+    } 
+    else if (role === 'ROLE_ESTOQUISTA') {
+      this.router.navigate(['/estoquista/add-product']);
+    }
+    else {
+      console.warn('Cargo não autorizado:', role);
+    }
   }
 }

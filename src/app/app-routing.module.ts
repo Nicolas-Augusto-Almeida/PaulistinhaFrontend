@@ -7,6 +7,7 @@ import { LoginComponent } from './pages/login/login.component';
 import { MainLayoutComponent } from './layouts/main-layout/main-layout.component';
 import { ListEmployeesComponent } from './pages/list-employees/list-employees.component';
 import { ListProductsComponent } from './pages/list-products/list-products.component';
+import { AddProductComponent } from './pages/add-product/add-product.component';
 
 export const routes: Routes = [
   {
@@ -18,6 +19,7 @@ export const routes: Routes = [
       { path: 'home', component: DashboardGerenteComponent },
       { path: 'funcionarios', component: ListEmployeesComponent },
       { path: 'produtos', component: ListProductsComponent },
+      { path: 'add-product', component: AddProductComponent },
     ],
   },
 
@@ -29,8 +31,10 @@ export const routes: Routes = [
     children: [
       { path: 'home', component: DashboardEstoquistaComponent },
       { path: 'produtos', component: ListProductsComponent },
+      { path: 'add-product', component: AddProductComponent },
     ],
   },
+
   {
     path: '',
     redirectTo: 'login',
