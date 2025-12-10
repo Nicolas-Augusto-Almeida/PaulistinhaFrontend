@@ -1,5 +1,7 @@
-import { NgModule } from '@angular/core';
+import { LOCALE_ID, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { CommonModule, registerLocaleData } from '@angular/common'; // Necessário para o pipe 'currency'
+import localePt from '@angular/common/locales/pt'; // Locale para pt-BR
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -15,6 +17,9 @@ import { MainLayoutComponent } from './layouts/main-layout/main-layout.component
 import { FooterComponent } from './components/footer/footer.component';
 import { CardComponent } from './components/card/card.component';
 import { ListEmployeesComponent } from './pages/list-employees/list-employees.component';
+import { ListProductsComponent } from './pages/list-products/list-products.component';
+
+registerLocaleData(localePt);
 
 @NgModule({
   declarations: [
@@ -27,16 +32,18 @@ import { ListEmployeesComponent } from './pages/list-employees/list-employees.co
     FooterComponent,
     CardComponent,
     ListEmployeesComponent,
+    ListProductsComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     NgbModule,
+    CommonModule,
     NgxMaskDirective,
     ReactiveFormsModule,
     HttpClientModule,
   ],
-  providers: [provideNgxMask()],
+  providers: [provideNgxMask(), { provide: LOCALE_ID, useValue: 'pt-BR' }],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
