@@ -5,6 +5,7 @@ import { DashboardGerenteComponent } from './pages/dashboard-gerente/dashboard-g
 import { DashboardEstoquistaComponent } from './pages/dashboard-estoquista/dashboard-estoquista.component';
 import { LoginComponent } from './pages/login/login.component';
 import { MainLayoutComponent } from './layouts/main-layout/main-layout.component';
+import { ListProductsComponent } from './pages/list-products/list-products.component';
 
 export const routes: Routes = [
   {
@@ -12,7 +13,7 @@ export const routes: Routes = [
     component: MainLayoutComponent,
     canActivate: [AuthGuard],
     data: { role: 'ROLE_GERENTE' },
-    children: [{ path: 'home', component: DashboardGerenteComponent }],
+    children: [{ path: 'home', component: DashboardGerenteComponent }, { path: 'produtos', component: ListProductsComponent}],
   },
 
   {
@@ -20,7 +21,7 @@ export const routes: Routes = [
     component: MainLayoutComponent,
     canActivate: [AuthGuard],
     data: { role: 'ROLE_ESTOQUISTA' },
-    children: [{ path: 'home', component: DashboardEstoquistaComponent }],
+    children: [{ path: 'home', component: DashboardEstoquistaComponent }, { path: 'produtos', component: ListProductsComponent}],
   },
   {
     path: '',
