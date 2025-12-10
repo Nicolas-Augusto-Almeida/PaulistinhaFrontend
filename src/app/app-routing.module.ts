@@ -5,6 +5,7 @@ import { DashboardGerenteComponent } from './pages/dashboard-gerente/dashboard-g
 import { DashboardEstoquistaComponent } from './pages/dashboard-estoquista/dashboard-estoquista.component';
 import { LoginComponent } from './pages/login/login.component';
 import { MainLayoutComponent } from './layouts/main-layout/main-layout.component';
+import { ListEmployeesComponent } from './pages/list-employees/list-employees.component';
 
 export const routes: Routes = [
   {
@@ -12,7 +13,10 @@ export const routes: Routes = [
     component: MainLayoutComponent,
     canActivate: [AuthGuard],
     data: { role: 'ROLE_GERENTE' },
-    children: [{ path: 'home', component: DashboardGerenteComponent }],
+    children: [
+      { path: 'home', component: DashboardGerenteComponent },
+      { path: 'funcionarios', component: ListEmployeesComponent },
+    ],
   },
 
   {

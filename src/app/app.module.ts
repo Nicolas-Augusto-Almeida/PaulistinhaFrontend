@@ -14,6 +14,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { MainLayoutComponent } from './layouts/main-layout/main-layout.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { CardComponent } from './components/card/card.component';
+import { ListEmployeesComponent } from './pages/list-employees/list-employees.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { CardComponent } from './components/card/card.component';
     MainLayoutComponent,
     FooterComponent,
     CardComponent,
+    ListEmployeesComponent,
   ],
   imports: [
     BrowserModule,
