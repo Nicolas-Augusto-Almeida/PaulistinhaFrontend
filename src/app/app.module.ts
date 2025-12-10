@@ -13,6 +13,7 @@ import { DashboardEstoquistaComponent } from './pages/dashboard-estoquista/dashb
 import { HttpClientModule } from '@angular/common/http';
 import { MainLayoutComponent } from './layouts/main-layout/main-layout.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { CardComponent } from './components/card/card.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { FooterComponent } from './components/footer/footer.component';
     DashboardEstoquistaComponent,
     MainLayoutComponent,
     FooterComponent,
+    CardComponent,
   ],
   imports: [
     BrowserModule,
