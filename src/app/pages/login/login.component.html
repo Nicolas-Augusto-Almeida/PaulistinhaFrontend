@@ -1,19 +1,43 @@
-<div>
-  <div class="container-fluid">
-    <p class="titulo text-center bg-secondary">Paulistinha</p>
-  </div>
+<div class="bg-desfocado"></div>
 
+<div class="container-fluid p-0">
+  <p class="titulo text-center bg-secondary">
+    <img src="assets/img/logo.png" class="logo-navbar" alt="Logo" />Paulistinha
+  </p>
+</div>
+
+<form [formGroup]="loginForm">
   <div class="container login p-5">
     <div class="mb-4">
       <label for="CPFLogin" class="form-label">CPF Usuario:</label>
-      <input type="email" class="form-control" id="CPFLogin" placeholder="" />
+      <input
+        type="text"
+        class="form-control"
+        id="CPFLogin"
+        formControlName="CPF"
+        placeholder="***.***.***-**"
+        mask="000.000.000-00"
+        [dropSpecialCharacters]="true"
+      />
     </div>
     <div class="">
       <label for="SenhaLogin" class="form-label">Senha:</label>
-      <input type="email" class="form-control" id="SenhaLogin" placeholder="" />
+      <input
+        type="email"
+        class="form-control"
+        id="SenhaLogin"
+        placeholder=""
+        formControlName="Senha"
+      />
     </div>
     <div class="text-center">
-      <button class="btn btn-login">Login</button>
+      <button
+        class="btn btn-login"
+        onclick="logar()"
+        [disabled]="loginForm.invalid"
+      >
+        Login
+      </button>
     </div>
   </div>
-</div>
+</form>

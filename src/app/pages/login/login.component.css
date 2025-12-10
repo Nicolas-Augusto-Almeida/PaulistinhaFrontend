@@ -18,6 +18,7 @@
 .container.login {
   border-radius: 10px;
   background-color: #efefef;
+  width: 900px;
 }
 
 .btn-login {
@@ -28,4 +29,25 @@
   color: white;
   padding: 0;
   margin-top: 100px;
+}
+
+.bg-desfocado {
+  background-image: url("/assets/img/Home.png");
+  background-size: cover;
+  background-position: center;
+
+  filter: blur(5px);
+  -webkit-filter: blur(5px);
+
+  position: fixed;
+  top: -10px;
+  left: -10px;
+  right: -10px;
+  bottom: -10px;
+  z-index: -1;
+}
+
+.logo-navbar {
+  width: 100px;
+  height: 100px;
 }
