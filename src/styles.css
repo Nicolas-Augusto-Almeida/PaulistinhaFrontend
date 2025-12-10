@@ -1,10 +1,1 @@
-.navbar {
-  height: 56px;
-}
-
-.logo-navbar {
-  height: 80px;
-  width: auto;
-  margin-top: -10px; 
-}
-
+@import "bootstrap-icons/font/bootstrap-icons.css";

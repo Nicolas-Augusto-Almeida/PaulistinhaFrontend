@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router'; // Importar Router
 import { AuthService } from '../../services/auth.service'; // Ajuste o caminho se necessário
@@ -15,7 +15,8 @@ export class LoginComponent {
     senha: new FormControl('', Validators.required),
   });
 
-  constructor(private authService: AuthService, private router: Router) {}
+  private authService = inject(AuthService);
+  private router = inject(Router);
 
   logar() {
     if (this.loginForm.invalid) return;
@@ -25,14 +26,12 @@ export class LoginComponent {
       senha: this.loginForm.get('senha')?.value || '',
     };
 
-    console.log('Enviando para o Java:', loginData);
-
     this.authService.login(loginData).subscribe({
       next: (response) => {
         if (response.role === 'ROLE_GERENTE') {
-          this.router.navigate(['/gerente']);
+          this.router.navigate(['/gerente/home']);
         } else if (response.role === 'ROLE_ESTOQUISTA') {
-          this.router.navigate(['/estoquista']);
+          this.router.navigate(['/estoquista/home']);
         } else {
           alert('Perfil não autorizado ou desconhecido');
         }

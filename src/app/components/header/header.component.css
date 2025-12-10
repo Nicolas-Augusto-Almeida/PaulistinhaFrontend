@@ -1,0 +1,14 @@
+.icon {
+  font-size: 2rem;
+}
+
+.navbar {
+  height: 56px;
+  background-color: #d9d9d9;
+}
+
+.logo-navbar {
+  height: 80px;
+  width: 80px;
+  margin-top: -10px;
+}

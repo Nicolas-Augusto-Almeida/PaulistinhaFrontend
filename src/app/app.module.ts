@@ -11,6 +11,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { DashboardGerenteComponent } from './pages/dashboard-gerente/dashboard-gerente.component';
 import { DashboardEstoquistaComponent } from './pages/dashboard-estoquista/dashboard-estoquista.component';
 import { HttpClientModule } from '@angular/common/http';
+import { MainLayoutComponent } from './layouts/main-layout/main-layout.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +21,8 @@ import { HttpClientModule } from '@angular/common/http';
     HeaderComponent,
     DashboardGerenteComponent,
     DashboardEstoquistaComponent,
+    MainLayoutComponent,
+    FooterComponent,
   ],
   imports: [
     BrowserModule,

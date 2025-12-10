@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, tap } from 'rxjs';
 import { authLoginRequest, authLoginResponse } from '../types/authLogin.type';
@@ -9,7 +9,7 @@ import { authLoginRequest, authLoginResponse } from '../types/authLogin.type';
 export class AuthService {
   private apiUrl = 'http://localhost:8080/auth';
   private ROLE_KEY = 'userRole';
-  constructor(private http: HttpClient) {}
+  private http = inject(HttpClient);
 
   login(credenciais: authLoginRequest): Observable<authLoginResponse> {
     return this.http

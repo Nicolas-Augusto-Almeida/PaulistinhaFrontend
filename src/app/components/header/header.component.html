@@ -1,23 +1,20 @@
-<nav class="navbar navbar-expand-lg bg-body-tertiary">
+<nav class="navbar navbar-expand-lg">
   <div class="container-fluid">
-
-    <a class="navbar-brand" href="#">
-      <img src="assets/img/logo.png" class="logo-navbar" alt="Logo">
+    <a class="navbar-brand" [routerLink]="linkHome">
+      <img src="assets/img/logo.png" class="logo-navbar" alt="Logo" />
     </a>
-
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Home</a>
+          <a class="nav-link active" aria-current="page" [routerLink]="linkHome"
+            >Home</a
+          >
         </li>
       </ul>
       <form class="d-flex">
-        <button class="btn btn-outline-danger" type="submit">Sair</button>
+        <button class="btn text-decoration-none icon" (click)="logout()">
+          <i class="bi bi-box-arrow-right"></i>
+        </button>
       </form>
     </div>
   </div>
