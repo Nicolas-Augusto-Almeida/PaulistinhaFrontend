@@ -19,19 +19,12 @@ export class ListProductsComponent implements OnInit {
 
   constructor(
     private produtoService: ProdutoServiceService,
-    private authService: AuthService,   
-    private router: Router              
+    private authService: AuthService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
-    this.produtoService.listarProdutos().subscribe({
-      next: (data) => {
-        this.produtos = data;
-        this.produtosFiltrados = data;
-        console.log(data);
-      },
-      error: (err) => console.error('Erro ao carregar produtos', err),
-    });
+    this.carregarProdutos();
   }
 
   excluirProduto(id: string): void {
@@ -42,12 +35,24 @@ export class ListProductsComponent implements OnInit {
     this.produtoService.excluirProduto(id).subscribe({
       next: () => {
         this.produtos = this.produtos.filter((produto) => produto.id !== id);
+        this.carregarProdutos();
         console.log(`Produto com ID ${id} excluído com sucesso.`);
       },
       error: (err) => {
         console.error(`Erro ao excluir o produto com ID ${id}:`, err);
         alert('Ocorreu um erro ao tentar excluir o produto.');
       },
+    });
+  }
+
+  carregarProdutos() {
+    this.produtoService.listarProdutos().subscribe({
+      next: (data) => {
+        this.produtos = data;
+        this.produtosFiltrados = data;
+        console.log(data);
+      },
+      error: (err) => console.error('Erro ao carregar produtos', err),
     });
   }
 
@@ -78,11 +83,9 @@ export class ListProductsComponent implements OnInit {
 
     if (role === 'ROLE_GERENTE') {
       this.router.navigate(['/gerente/add-product']);
-    } 
-    else if (role === 'ROLE_ESTOQUISTA') {
+    } else if (role === 'ROLE_ESTOQUISTA') {
       this.router.navigate(['/estoquista/add-product']);
-    }
-    else {
+    } else {
       console.warn('Cargo não autorizado:', role);
     }
   }

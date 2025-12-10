@@ -1,33 +1,21 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ProdutoServiceService } from '../../services/produto-service.service';
+import { CategoriasService } from '../../services/categorias.service';
+import { Categoria } from '../../models/Produto.model';
 
 @Component({
   selector: 'app-add-product',
   standalone: false,
   templateUrl: './add-product.component.html',
-  styleUrl: './add-product.component.css'
+  styleUrl: './add-product.component.css',
 })
 export class AddProductComponent implements OnInit {
+  private categoriaService = inject(CategoriasService);
 
   productForm!: FormGroup;
 
-  categorias = [
-    'HORTIFRUTI',
-    'ACOUGUE',
-    'PADARIA',
-    'FRIOS_E_LATICINIOS',
-    'MERCEARIA',
-    'BEBIDAS',
-    'CONGELADOS',
-    'HIGIENE_PESSOAL',
-    'LIMPEZA',
-    'PET_SHOP',
-    'BEBE',
-    'CUIDADOS_COM_A_CASA',
-    'PRODUTOS_DE_SAUDE',
-    'DOCES_E_SNACKS'
-  ];
+  categorias: Categoria[] = [];
 
   constructor(
     private fb: FormBuilder,
@@ -40,7 +28,13 @@ export class AddProductComponent implements OnInit {
       preco: ['', [Validators.required, Validators.min(0)]],
       categoria: ['', Validators.required],
       quantidade: ['', [Validators.required, Validators.min(0)]],
-      descricao: ['']
+      descricao: [''],
+    });
+
+    this.categoriaService.listarCategorias().subscribe({
+      next: (data) => {
+        (this.categorias = data), console.log(data);
+      },
     });
   }
 
@@ -60,7 +54,7 @@ export class AddProductComponent implements OnInit {
       error: (erro) => {
         console.error(erro);
         alert('Erro ao criar produto');
-      }
+      },
     });
   }
 }
