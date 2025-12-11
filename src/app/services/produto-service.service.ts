@@ -39,21 +39,23 @@ export class ProdutoServiceService {
 
   adicionarEstoque(nome: string, quantidade: number): Observable<Produto> {
     const params = new HttpParams().set('quantidade', quantidade.toString());
+    const encodedNome = encodeURIComponent(nome);
 
     return this.http.put<Produto>(
-      `${this.baseUrl}/adicionar/${nome}`,
+      `${this.baseUrl}/adicionar/${encodedNome}`,
       {},
-      { params }
+      { params, withCredentials: true } 
     );
   }
 
   retirarEstoque(nome: string, quantidade: number): Observable<Produto> {
     const params = new HttpParams().set('quantidade', quantidade.toString());
+    const encodedNome = encodeURIComponent(nome); 
 
     return this.http.put<Produto>(
-      `${this.baseUrl}/retirar/${nome}`,
+      `${this.baseUrl}/retirar/${encodedNome}`,
       {},
-      { params }
+      { params, withCredentials: true } 
     );
   }
 }
