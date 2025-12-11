@@ -21,8 +21,8 @@ export class FuncionarioService {
     });
   }
 
-  buscarPorId(id: string): Observable<Funcionario> {
-    return this.http.get<Funcionario>(`${this.apiUrl}/${id}`, {
+  buscarPorCpf(cpf: string): Observable<Funcionario> {
+    return this.http.get<Funcionario>(`${this.apiUrl}/${cpf}`, {
       withCredentials: true,
     });
   }

@@ -51,7 +51,9 @@ export class ListEmployeesComponent {
     }
   }
 
-  editarFuncionario(id: string) {}
+  editarFuncionario(cpf: string) {
+    this.router.navigate(['/gerente/edit-funcionario', cpf]);
+  }
 
   filtrar(event: Event) {
     const input = event.target as HTMLInputElement;

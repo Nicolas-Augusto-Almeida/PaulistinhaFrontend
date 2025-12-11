@@ -1,5 +1,5 @@
 <div class="container mt-4">
-  <h2>Cadastrar Funcionario</h2>
+  <h2>{{ isEditMode ? "Editar Funcionário" : "Cadastrar Funcionário" }}</h2>
 
   <form [formGroup]="employeeForm" (ngSubmit)="salvar()">
     <div class="mb-3">
@@ -35,6 +35,13 @@
       />
     </div>
 
-    <button class="btn btn-primary" type="submit">Salvar Funcionario</button>
+    <div class="mb-3">
+      <label class="form-label">Senha</label>
+      <input type="password" class="form-control" formControlName="senha" />
+    </div>
+
+    <button class="btn btn-primary" type="submit">
+      {{ isEditMode ? "Atualizar" : "Salvar" }}
+    </button>
   </form>
 </div>
