@@ -1,0 +1,15 @@
+.form-control.small {
+  width: 200px;
+}
+
+.form-control.medium {
+  width: 300px;
+}
+
+.form-select.medium {
+  width: 300px;
+}
+
+.form-control.big {
+  width: 400px;
+}
