@@ -4,6 +4,7 @@ import { ProdutoServiceService } from '../../services/produto-service.service';
 import { CategoriasService } from '../../services/categorias.service';
 import { Categoria } from '../../models/Produto.model';
 import { ActivatedRoute, Router } from '@angular/router';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-add-product',
@@ -12,7 +13,6 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrl: './add-product.component.css',
 })
 export class AddProductComponent implements OnInit {
-
   private categoriaService = inject(CategoriasService);
 
   productForm!: FormGroup;
@@ -25,7 +25,8 @@ export class AddProductComponent implements OnInit {
     private fb: FormBuilder,
     private produtoService: ProdutoServiceService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private auth: AuthService
   ) {}
 
   ngOnInit(): void {
@@ -71,7 +72,7 @@ export class AddProductComponent implements OnInit {
       this.produtoService.atualizarProduto(this.produtoId, produto).subscribe({
         next: () => {
           alert('Produto atualizado com sucesso!');
-          this.router.navigate(['/gerente/produtos']);
+          this.router.navigate(this.obterRotaDestino());
         },
         error: () => alert('Erro ao atualizar produto'),
       });
@@ -82,8 +83,19 @@ export class AddProductComponent implements OnInit {
       next: () => {
         alert('Produto criado com sucesso!');
         this.productForm.reset();
+        this.router.navigate(this.obterRotaDestino());
       },
       error: () => alert('Erro ao criar produto'),
     });
+  }
+
+  private obterRotaDestino(): string[] {
+    const perfil = this.auth.getRole();
+
+    if (perfil === 'ROLE_GERENTE') {
+      return ['/gerente/produtos'];
+    } else {
+      return ['/estoquista/produtos'];
+    }
   }
 }

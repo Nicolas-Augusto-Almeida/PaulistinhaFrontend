@@ -68,7 +68,7 @@ export class ListEmployeesComponent {
       const nome = (func.nome || '').toLowerCase();
 
       const cpf = func.cpf || '';
-      const nomeCargo = (func.cargo?.nomeCargo || '').toLowerCase();
+      const nomeCargo = (func.cargo || '').toLowerCase();
 
       return (
         nome.includes(valor) || cpf.includes(valor) || nomeCargo.includes(valor)

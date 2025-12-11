@@ -1,8 +1,7 @@
-<div class="container mt-4">
+<div class="container mt-4 bg-light p-4 rounded-3 shadow">
   <h2>{{ isEditMode ? "Editar Produto" : "Cadastrar Produto" }}</h2>
 
   <form [formGroup]="productForm" (ngSubmit)="salvar()">
-    
     <div class="row">
       <div class="col-md-6 mb-3">
         <label class="form-label">Nome</label>
@@ -11,7 +10,11 @@
 
       <div class="col-md-6 mb-3">
         <label class="form-label">Preço</label>
-        <input type="number" class="form-control medium" formControlName="preco" />
+        <input
+          type="number"
+          class="form-control medium"
+          formControlName="preco"
+        />
       </div>
     </div>
 
@@ -37,7 +40,7 @@
       <div class="mb-3">
         <label class="form-label">Descrição</label>
         <textarea
-          class="form-control medium"
+          class="form-control"
           rows="4"
           formControlName="descricao"
         ></textarea>
@@ -46,6 +49,5 @@
     <button class="btn btn-primary" type="submit">
       {{ isEditMode ? "Atualizar Produto" : "Salvar Produto" }}
     </button>
-
   </form>
 </div>

@@ -45,8 +45,7 @@ export class HistoryComponent {
     this.logsFiltrados = this.logs.filter(
       (log) =>
         log.produtoNome.toLowerCase().includes(termo) ||
-        log.funcionarioNome.toLowerCase().includes(termo) ||
-        log.acao.toLowerCase().includes(termo)
+        log.funcionarioNome.toLowerCase().includes(termo)
     );
   }
 

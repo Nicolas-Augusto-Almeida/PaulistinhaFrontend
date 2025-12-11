@@ -65,9 +65,7 @@ export class ListProductsComponent implements OnInit {
 
     this.produtosFiltrados = this.produtos.filter((produto) => {
       const nome = (produto.nome || '').toLowerCase();
-      const nomeCategoria = (
-        produto.categoria?.nomeCategoria || ''
-      ).toLowerCase();
+      const nomeCategoria = (produto.categoria || '').toLowerCase();
 
       return nome.includes(valor) || nomeCategoria.includes(valor);
     });

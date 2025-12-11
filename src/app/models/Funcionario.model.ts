@@ -2,7 +2,7 @@ export interface Funcionario {
   id?: string;
   nome: string;
   cpf: string;
-  cargo: Cargo;
+  cargo: string;
   telefone: string;
   endereco?: string;
 }

@@ -1,4 +1,4 @@
-<div class="container mt-4">
+<div class="container mt-4 bg-light p-4 rounded-3 shadow">
   <h2>{{ isEditMode ? "Editar Funcionário" : "Cadastrar Funcionário" }}</h2>
 
   <form [formGroup]="employeeForm" (ngSubmit)="salvar()">
