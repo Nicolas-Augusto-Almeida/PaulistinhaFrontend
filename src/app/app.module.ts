@@ -9,7 +9,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { LoginComponent } from './pages/login/login.component';
 import { HeaderComponent } from './components/header/header.component';
 import { NgxMaskDirective, provideNgxMask } from 'ngx-mask';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DashboardGerenteComponent } from './pages/dashboard-gerente/dashboard-gerente.component';
 import { DashboardEstoquistaComponent } from './pages/dashboard-estoquista/dashboard-estoquista.component';
 import { HttpClientModule } from '@angular/common/http';
@@ -45,6 +45,7 @@ registerLocaleData(localePt);
     CommonModule,
     NgxMaskDirective,
     ReactiveFormsModule,
+    FormsModule,
     HttpClientModule,
   ],
   providers: [provideNgxMask(), { provide: LOCALE_ID, useValue: 'pt-BR' }],

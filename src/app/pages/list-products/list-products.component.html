@@ -1,5 +1,8 @@
 <div class="container mt-3">
-  <button class="btn btn-success d-flex align-items-end mb-3"  (click)="irParaCadastro()">
+  <button
+    class="btn btn-success d-flex align-items-end mb-3"
+    (click)="irParaCadastro()"
+  >
     Cadastrar Produto
   </button>
 
@@ -27,8 +30,9 @@
         <th scope="col">Descrição</th>
         <th scope="col">Preço</th>
         <th scope="col">Categoria</th>
-        <th scope="col">Quantidade</th>
+        <th scope="col">Estoque</th>
         <th scope="col" class="text-center">Ações</th>
+        <th scope="col" class="text-center">Movimentações</th>
       </tr>
     </thead>
     <tbody>
@@ -41,10 +45,10 @@
         <td>{{ produto.quantidade }}</td>
         <td class="text-center">
           <div class="d-flex justify-content-center gap-2">
-            <button 
+            <button
               class="btn btn-sm btn-primary"
               (click)="editarProduto(produto.id!)"
-              >
+            >
               <i class="bi bi-pencil"></i> Editar
             </button>
             <button
@@ -52,6 +56,35 @@
               (click)="excluirProduto(produto.id!)"
             >
               <i class="bi bi-trash"></i> Excluir
+            </button>
+          </div>
+        </td>
+        <td>
+          <div class="input-group">
+            <button
+              class="btn btn-outline-danger"
+              type="button"
+              (click)="atualizarEstoque(produto, 'retirar')"
+              title="Retirar do Estoque"
+            >
+              <i class="bi bi-dash-lg"></i>
+            </button>
+
+            <input
+              type="number"
+              class="form-control text-center"
+              placeholder="0"
+              [(ngModel)]="produto.quantidadeInput"
+              min="1"
+            />
+
+            <button
+              class="btn btn-outline-success"
+              type="button"
+              (click)="atualizarEstoque(produto, 'adicionar')"
+              title="Adicionar ao Estoque"
+            >
+              <i class="bi bi-plus-lg"></i>
             </button>
           </div>
         </td>

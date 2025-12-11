@@ -89,8 +89,41 @@ export class ListProductsComponent implements OnInit {
       console.warn('Cargo não autorizado:', role);
     }
   }
-  
-editarProduto(id: string) {
-  this.router.navigate(['../edit-product', id], { relativeTo: this.route });
-}
+
+  editarProduto(id: string) {
+    this.router.navigate(['../edit-product', id], { relativeTo: this.route });
+  }
+
+  atualizarEstoque(produto: Produto, acao: 'adicionar' | 'retirar') {
+    const qtd = produto.quantidadeInput;
+    if (!qtd || qtd <= 0) {
+      alert('Digite uma quantidade válida maior que zero.');
+      return;
+    }
+
+    let requisicao$;
+
+    if (acao === 'adicionar') {
+      requisicao$ = this.produtoService.adicionarEstoque(produto.nome, qtd);
+    } else {
+      if (qtd > produto.quantidade) {
+        alert('Estoque insuficiente!');
+        return;
+      }
+      requisicao$ = this.produtoService.retirarEstoque(produto.nome, qtd);
+    }
+
+    requisicao$.subscribe({
+      next: (produtoAtualizado) => {
+        produto.quantidade = produtoAtualizado.quantidade;
+        produto.quantidadeInput = undefined;
+        alert(
+          `Estoque ${
+            acao === 'adicionar' ? 'adicionado' : 'removido'
+          } com sucesso!`
+        );
+      },
+      error: (err) => console.error('Erro ao atualizar estoque', err),
+    });
+  }
 }

@@ -5,6 +5,8 @@ export interface Produto {
   preco: number;
   categoria: Categoria;
   quantidade: number;
+
+  quantidadeInput?: number;
 }
 
 export interface Categoria {

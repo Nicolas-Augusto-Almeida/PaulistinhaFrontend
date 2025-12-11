@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Produto } from '../models/Produto.model';
 
@@ -26,10 +26,34 @@ export class ProdutoServiceService {
   }
 
   buscarProdutoPorId(id: string): Observable<Produto> {
-    return this.http.get<Produto>(`${this.baseUrl}/${id}`, { withCredentials: true });
+    return this.http.get<Produto>(`${this.baseUrl}/${id}`, {
+      withCredentials: true,
+    });
   }
 
   atualizarProduto(id: string, produto: Produto): Observable<Produto> {
-    return this.http.put<Produto>(`${this.baseUrl}/${id}`, produto, { withCredentials: true });
+    return this.http.put<Produto>(`${this.baseUrl}/${id}`, produto, {
+      withCredentials: true,
+    });
+  }
+
+  adicionarEstoque(nome: string, quantidade: number): Observable<Produto> {
+    const params = new HttpParams().set('quantidade', quantidade.toString());
+
+    return this.http.put<Produto>(
+      `${this.baseUrl}/adicionar/${nome}`,
+      {},
+      { params }
+    );
+  }
+
+  retirarEstoque(nome: string, quantidade: number): Observable<Produto> {
+    const params = new HttpParams().set('quantidade', quantidade.toString());
+
+    return this.http.put<Produto>(
+      `${this.baseUrl}/retirar/${nome}`,
+      {},
+      { params }
+    );
   }
 }
