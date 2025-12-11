@@ -23,77 +23,84 @@
     Lista de Produtos
   </h2>
 
-  <table class="table table-striped-columns table-hover">
-    <thead>
-      <tr>
-        <th scope="col">Nome</th>
-        <th scope="col">Descrição</th>
-        <th scope="col">Preço</th>
-        <th scope="col">Categoria</th>
-        <th scope="col">Estoque</th>
-        <th scope="col" class="text-center">Ações</th>
-        <th scope="col" class="text-center">Movimentações</th>
-      </tr>
-    </thead>
-    <tbody>
-      @for (produto of produtosFiltrados; track produto.id) {
-      <tr>
-        <td>{{ produto.nome }}</td>
-        <td>{{ produto.descricao || "-" }}</td>
-        <td>{{ produto.preco | currency : "BRL" }}</td>
-        <td>{{ produto.categoria }}</td>
-        <td>{{ produto.quantidade }}</td>
-        <td class="text-center">
-          <div class="d-flex justify-content-center gap-2">
-            <button
-              class="btn btn-sm btn-primary"
-              (click)="editarProduto(produto.id!)"
-            >
-              <i class="bi bi-pencil"></i> Editar
-            </button>
-            <button
-              class="btn btn-sm btn-danger"
-              (click)="excluirProduto(produto.id!)"
-            >
-              <i class="bi bi-trash"></i> Excluir
-            </button>
-          </div>
-        </td>
-        <td>
-          <div class="input-group">
-            <button
-              class="btn btn-outline-danger"
-              type="button"
-              (click)="atualizarEstoque(produto, 'retirar')"
-              title="Retirar do Estoque"
-            >
-              <i class="bi bi-dash-lg"></i>
-            </button>
+  <div
+    class="table-responsive border rounded shadow-sm"
+    style="max-height: 500px; overflow-y: auto"
+  >
+    <table class="table table-striped-columns table-hover">
+      <thead>
+        <tr>
+          <th scope="col">Nome</th>
+          <th scope="col">Descrição</th>
+          <th scope="col">Preço</th>
+          <th scope="col">Categoria</th>
+          <th scope="col">Estoque</th>
+          <th scope="col" class="text-center">Ações</th>
+          <th scope="col" class="text-center">Movimentações</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (produto of produtosFiltrados; track produto.id) {
+        <tr>
+          <td>{{ produto.nome }}</td>
+          <td>{{ produto.descricao || "-" }}</td>
+          <td>{{ produto.preco | currency : "BRL" }}</td>
+          <td>{{ produto.categoria }}</td>
+          <td>{{ produto.quantidade }}</td>
+          <td class="text-center">
+            <div class="d-flex justify-content-center gap-2">
+              <button
+                class="btn btn-sm btn-primary"
+                (click)="editarProduto(produto.id!)"
+              >
+                <i class="bi bi-pencil"></i> Editar
+              </button>
+              <button
+                class="btn btn-sm btn-danger"
+                (click)="excluirProduto(produto.id!)"
+              >
+                <i class="bi bi-trash"></i> Excluir
+              </button>
+            </div>
+          </td>
+          <td>
+            <div class="input-group">
+              <button
+                class="btn btn-outline-danger"
+                type="button"
+                (click)="atualizarEstoque(produto, 'retirar')"
+                title="Retirar do Estoque"
+              >
+                <i class="bi bi-dash-lg"></i>
+              </button>
 
-            <input
-              type="number"
-              class="form-control text-center"
-              placeholder="0"
-              [(ngModel)]="produto.quantidadeInput"
-              min="1"
-            />
+              <input
+                type="number"
+                class="form-control text-center"
+                placeholder="0"
+                [(ngModel)]="produto.quantidadeInput"
+                min="1"
+              />
 
-            <button
-              class="btn btn-outline-success"
-              type="button"
-              (click)="atualizarEstoque(produto, 'adicionar')"
-              title="Adicionar ao Estoque"
-            >
-              <i class="bi bi-plus-lg"></i>
-            </button>
-          </div>
-        </td>
-      </tr>
-      } @empty {
-      <tr>
-        <td colspan="6" class="text-center p-3">Nenhum produto encontrado.</td>
-      </tr>
-      }
-    </tbody>
-  </table>
+              <button
+                class="btn btn-outline-success"
+                type="button"
+                (click)="atualizarEstoque(produto, 'adicionar')"
+                title="Adicionar ao Estoque"
+              >
+                <i class="bi bi-plus-lg"></i>
+              </button>
+            </div>
+          </td>
+        </tr>
+        } @empty {
+        <tr>
+          <td colspan="6" class="text-center p-3">
+            Nenhum produto encontrado.
+          </td>
+        </tr>
+        }
+      </tbody>
+    </table>
+  </div>
 </div>

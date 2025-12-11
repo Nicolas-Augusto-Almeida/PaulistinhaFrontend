@@ -20,6 +20,7 @@ import { ListEmployeesComponent } from './pages/list-employees/list-employees.co
 import { ListProductsComponent } from './pages/list-products/list-products.component';
 import { AddProductComponent } from './pages/add-product/add-product.component';
 import { AddEmployeeComponent } from './pages/add-employee/add-employee.component';
+import { HistoryComponent } from './pages/history/history.component';
 
 registerLocaleData(localePt);
 
@@ -37,6 +38,7 @@ registerLocaleData(localePt);
     ListProductsComponent,
     AddProductComponent,
     AddEmployeeComponent,
+    HistoryComponent,
   ],
   imports: [
     BrowserModule,

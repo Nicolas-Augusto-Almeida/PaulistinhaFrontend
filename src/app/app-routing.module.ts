@@ -9,6 +9,7 @@ import { ListEmployeesComponent } from './pages/list-employees/list-employees.co
 import { ListProductsComponent } from './pages/list-products/list-products.component';
 import { AddProductComponent } from './pages/add-product/add-product.component';
 import { AddEmployeeComponent } from './pages/add-employee/add-employee.component';
+import { HistoryComponent } from './pages/history/history.component';
 
 export const routes: Routes = [
   {
@@ -24,6 +25,7 @@ export const routes: Routes = [
       { path: 'edit-product/:id', component: AddProductComponent },
       { path: 'add-funcionario', component: AddEmployeeComponent },
       { path: 'edit-funcionario/:cpf', component: AddEmployeeComponent },
+      { path: 'historico', component: HistoryComponent },
     ],
   },
 
