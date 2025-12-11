@@ -1,12 +1,12 @@
 export interface Produto {
-  id: String;
-  nome: String;
-  descricao: String;
+  id: string;
+  nome: string;
+  descricao: string;
   preco: number;
   categoria: Categoria;
   quantidade: number;
 }
 
 export interface Categoria {
-  nomeCategoria: String;
+  nomeCategoria: string;
 }

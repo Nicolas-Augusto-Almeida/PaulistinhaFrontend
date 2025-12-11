@@ -1,11 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
-
-import {
-  ProdutoServiceService,
-  Produto,
-} from '../../services/produto-service.service';
+import { ProdutoServiceService } from '../../services/produto-service.service';
+import { Produto } from '../../models/Produto.model';
 
 @Component({
   selector: 'app-list-products',
@@ -66,10 +63,12 @@ export class ListProductsComponent implements OnInit {
     }
 
     this.produtosFiltrados = this.produtos.filter((produto) => {
-      return (
-        produto.nome.toLowerCase().includes(valor) ||
-        produto.categoria.toLowerCase().includes(valor)
-      );
+      const nome = (produto.nome || '').toLowerCase();
+      const nomeCategoria = (
+        produto.categoria?.nomeCategoria || ''
+      ).toLowerCase();
+
+      return nome.includes(valor) || nomeCategoria.includes(valor);
     });
   }
 

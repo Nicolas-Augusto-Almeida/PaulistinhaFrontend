@@ -35,4 +35,8 @@ export class FuncionarioService {
       withCredentials: true,
     });
   }
+
+  criarFuncionario(employee: any) {
+    return this.http.post(this.apiUrl, employee, { withCredentials: true });
+  }
 }

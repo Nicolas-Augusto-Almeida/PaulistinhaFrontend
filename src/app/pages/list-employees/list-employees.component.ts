@@ -2,6 +2,7 @@ import { Component, inject } from '@angular/core';
 import { Funcionario } from '../../models/Funcionario.model';
 import { FuncionarioService } from '../../services/funcionario.service';
 import { Router } from '@angular/router';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-list-employees',
@@ -14,7 +15,8 @@ export class ListEmployeesComponent {
   funcionariosFiltrados: Funcionario[] = [];
 
   private funcionarioService = inject(FuncionarioService);
-  private Router = inject(Router);
+  private router = inject(Router);
+  private authService = inject(AuthService);
 
   ngOnInit(): void {
     this.carregarFuncionarios();
@@ -61,11 +63,30 @@ export class ListEmployeesComponent {
     }
 
     this.funcionariosFiltrados = this.funcionarios.filter((func) => {
+      const nome = (func.nome || '').toLowerCase();
+
+      const cpf = func.cpf || '';
+      const nomeCargo = (func.cargo?.nomeCargo || '').toLowerCase();
+
       return (
-        func.nome.toLowerCase().includes(valor) ||
-        func.cpf.includes(valor) ||
-        func.cargo.toLowerCase().includes(valor)
+        nome.includes(valor) || cpf.includes(valor) || nomeCargo.includes(valor)
       );
     });
+  }
+
+  cadastroFuncionario() {
+    const role = this.authService.getRole();
+    console.log('Role atual:', role);
+
+    if (!role) {
+      console.error('Nenhum role encontrado. Usuário não está logado.');
+      return;
+    }
+
+    if (role === 'ROLE_GERENTE') {
+      this.router.navigate(['/gerente/add-funcionario']);
+    } else {
+      console.warn('Cargo não autorizado:', role);
+    }
   }
 }

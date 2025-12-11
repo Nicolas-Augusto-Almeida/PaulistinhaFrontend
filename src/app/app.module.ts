@@ -19,6 +19,7 @@ import { CardComponent } from './components/card/card.component';
 import { ListEmployeesComponent } from './pages/list-employees/list-employees.component';
 import { ListProductsComponent } from './pages/list-products/list-products.component';
 import { AddProductComponent } from './pages/add-product/add-product.component';
+import { AddEmployeeComponent } from './pages/add-employee/add-employee.component';
 
 registerLocaleData(localePt);
 
@@ -35,6 +36,7 @@ registerLocaleData(localePt);
     ListEmployeesComponent,
     ListProductsComponent,
     AddProductComponent,
+    AddEmployeeComponent,
   ],
   imports: [
     BrowserModule,

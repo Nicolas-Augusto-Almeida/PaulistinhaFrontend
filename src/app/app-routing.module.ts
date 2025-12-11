@@ -8,6 +8,7 @@ import { MainLayoutComponent } from './layouts/main-layout/main-layout.component
 import { ListEmployeesComponent } from './pages/list-employees/list-employees.component';
 import { ListProductsComponent } from './pages/list-products/list-products.component';
 import { AddProductComponent } from './pages/add-product/add-product.component';
+import { AddEmployeeComponent } from './pages/add-employee/add-employee.component';
 
 export const routes: Routes = [
   {
@@ -20,6 +21,7 @@ export const routes: Routes = [
       { path: 'funcionarios', component: ListEmployeesComponent },
       { path: 'produtos', component: ListProductsComponent },
       { path: 'add-product', component: AddProductComponent },
+      { path: 'add-funcionario', component: AddEmployeeComponent },
     ],
   },
 

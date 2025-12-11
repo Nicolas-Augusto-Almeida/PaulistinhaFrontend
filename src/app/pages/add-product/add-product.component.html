@@ -2,20 +2,16 @@
   <h2>Cadastrar Produto</h2>
 
   <form [formGroup]="productForm" (ngSubmit)="salvar()">
-
-    <!-- Nome -->
     <div class="mb-3">
       <label class="form-label">Nome</label>
-      <input type="text" class="form-control" formControlName="nome">
+      <input type="text" class="form-control" formControlName="nome" />
     </div>
 
-    <!-- Preço -->
     <div class="mb-3">
       <label class="form-label">Preço</label>
-      <input type="number" class="form-control" formControlName="preco">
+      <input type="number" class="form-control" formControlName="preco" />
     </div>
 
-    <!-- Categoria -->
     <div class="mb-3">
       <label class="form-label">Categoria</label>
       <select class="form-select" formControlName="categoria">
@@ -24,16 +20,18 @@
       </select>
     </div>
 
-    <!-- Quantidade -->
     <div class="mb-3">
       <label class="form-label">Quantidade</label>
-      <input type="number" class="form-control" formControlName="quantidade">
+      <input type="number" class="form-control" formControlName="quantidade" />
     </div>
 
-    <!-- Descrição (opcional) -->
     <div class="mb-3">
       <label class="form-label">Descrição</label>
-      <textarea class="form-control" rows="4" formControlName="descricao"></textarea>
+      <textarea
+        class="form-control"
+        rows="4"
+        formControlName="descricao"
+      ></textarea>
     </div>
 
     <button class="btn btn-primary" type="submit">Salvar Produto</button>

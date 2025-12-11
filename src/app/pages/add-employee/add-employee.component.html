@@ -1,0 +1,40 @@
+<div class="container mt-4">
+  <h2>Cadastrar Funcionario</h2>
+
+  <form [formGroup]="employeeForm" (ngSubmit)="salvar()">
+    <div class="mb-3">
+      <label class="form-label">Nome</label>
+      <input type="text" class="form-control" formControlName="nome" />
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">CPF</label>
+      <input type="text" class="form-control" formControlName="cpf" />
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Cargo</label>
+      <select class="form-select" formControlName="cargo">
+        <option value="">Selecione</option>
+        <option *ngFor="let c of cargos" [value]="c">{{ c }}</option>
+      </select>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Telefone</label>
+      <input type="text" class="form-control" formControlName="telefone" />
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Endereço</label>
+      <input
+        type="text"
+        class="form-control"
+        rows="4"
+        formControlName="endereco"
+      />
+    </div>
+
+    <button class="btn btn-primary" type="submit">Salvar Funcionario</button>
+  </form>
+</div>
