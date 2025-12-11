@@ -41,7 +41,10 @@
         <td>{{ produto.quantidade }}</td>
         <td class="text-center">
           <div class="d-flex justify-content-center gap-2">
-            <button class="btn btn-sm btn-primary">
+            <button 
+              class="btn btn-sm btn-primary"
+              (click)="editarProduto(produto.id!)"
+              >
               <i class="bi bi-pencil"></i> Editar
             </button>
             <button

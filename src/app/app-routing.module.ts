@@ -21,6 +21,7 @@ export const routes: Routes = [
       { path: 'funcionarios', component: ListEmployeesComponent },
       { path: 'produtos', component: ListProductsComponent },
       { path: 'add-product', component: AddProductComponent },
+      { path: 'edit-product/:id', component: AddProductComponent },
       { path: 'add-funcionario', component: AddEmployeeComponent },
       { path: 'edit-funcionario/:cpf', component: AddEmployeeComponent },
     ],
@@ -35,6 +36,7 @@ export const routes: Routes = [
       { path: 'home', component: DashboardEstoquistaComponent },
       { path: 'produtos', component: ListProductsComponent },
       { path: 'add-product', component: AddProductComponent },
+      { path: 'edit-product/:id', component: AddProductComponent },
     ],
   },
 

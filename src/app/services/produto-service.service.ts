@@ -24,4 +24,12 @@ export class ProdutoServiceService {
   criarProduto(produto: any) {
     return this.http.post(this.baseUrl, produto, { withCredentials: true });
   }
+
+  buscarProdutoPorId(id: string): Observable<Produto> {
+    return this.http.get<Produto>(`${this.baseUrl}/${id}`, { withCredentials: true });
+  }
+
+  atualizarProduto(id: string, produto: Produto): Observable<Produto> {
+    return this.http.put<Produto>(`${this.baseUrl}/${id}`, produto, { withCredentials: true });
+  }
 }

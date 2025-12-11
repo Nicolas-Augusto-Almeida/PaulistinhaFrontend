@@ -1,39 +1,51 @@
 <div class="container mt-4">
-  <h2>Cadastrar Produto</h2>
+  <h2>{{ isEditMode ? "Editar Produto" : "Cadastrar Produto" }}</h2>
 
   <form [formGroup]="productForm" (ngSubmit)="salvar()">
-    <div class="mb-3">
-      <label class="form-label">Nome</label>
-      <input type="text" class="form-control" formControlName="nome" />
+    
+    <div class="row">
+      <div class="col-md-6 mb-3">
+        <label class="form-label">Nome</label>
+        <input type="text" class="form-control big" formControlName="nome" />
+      </div>
+
+      <div class="col-md-6 mb-3">
+        <label class="form-label">Preço</label>
+        <input type="number" class="form-control medium" formControlName="preco" />
+      </div>
     </div>
 
-    <div class="mb-3">
-      <label class="form-label">Preço</label>
-      <input type="number" class="form-control" formControlName="preco" />
-    </div>
+    <div class="row">
+      <div class="col-md-6 mb-3">
+        <label class="form-label">Categoria</label>
+        <select class="form-select medium" formControlName="categoria">
+          <option value="">Selecione</option>
+          <option *ngFor="let c of categorias" [value]="c">{{ c }}</option>
+        </select>
+      </div>
 
-    <div class="mb-3">
-      <label class="form-label">Categoria</label>
-      <select class="form-select" formControlName="categoria">
-        <option value="">Selecione</option>
-        <option *ngFor="let c of categorias" [value]="c">{{ c }}</option>
-      </select>
+      <div class="col-md-6 mb-3">
+        <label class="form-label">Quantidade</label>
+        <input
+          type="number"
+          class="form-control medium"
+          formControlName="quantidade"
+        />
+      </div>
     </div>
-
-    <div class="mb-3">
-      <label class="form-label">Quantidade</label>
-      <input type="number" class="form-control" formControlName="quantidade" />
+    <div class="row">
+      <div class="mb-3">
+        <label class="form-label">Descrição</label>
+        <textarea
+          class="form-control medium"
+          rows="4"
+          formControlName="descricao"
+        ></textarea>
+      </div>
     </div>
+    <button class="btn btn-primary" type="submit">
+      {{ isEditMode ? "Atualizar Produto" : "Salvar Produto" }}
+    </button>
 
-    <div class="mb-3">
-      <label class="form-label">Descrição</label>
-      <textarea
-        class="form-control"
-        rows="4"
-        formControlName="descricao"
-      ></textarea>
-    </div>
-
-    <button class="btn btn-primary" type="submit">Salvar Produto</button>
   </form>
 </div>

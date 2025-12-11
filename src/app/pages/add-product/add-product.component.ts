@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ProdutoServiceService } from '../../services/produto-service.service';
 import { CategoriasService } from '../../services/categorias.service';
 import { Categoria } from '../../models/Produto.model';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-product',
@@ -11,15 +12,20 @@ import { Categoria } from '../../models/Produto.model';
   styleUrl: './add-product.component.css',
 })
 export class AddProductComponent implements OnInit {
+
   private categoriaService = inject(CategoriasService);
 
   productForm!: FormGroup;
-
   categorias: Categoria[] = [];
+
+  isEditMode = false;
+  produtoId: string | null = null;
 
   constructor(
     private fb: FormBuilder,
-    private produtoService: ProdutoServiceService
+    private produtoService: ProdutoServiceService,
+    private route: ActivatedRoute,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -32,9 +38,24 @@ export class AddProductComponent implements OnInit {
     });
 
     this.categoriaService.listarCategorias().subscribe({
-      next: (data) => {
-        (this.categorias = data), console.log(data);
+      next: (data) => (this.categorias = data),
+      error: (err) => console.error('Erro ao carregar categorias', err),
+    });
+
+    this.produtoId = this.route.snapshot.paramMap.get('id');
+
+    if (this.produtoId) {
+      this.isEditMode = true;
+      this.carregarDadosProduto(this.produtoId);
+    }
+  }
+
+  carregarDadosProduto(id: string) {
+    this.produtoService.buscarProdutoPorId(id).subscribe({
+      next: (produto) => {
+        this.productForm.patchValue(produto);
       },
+      error: (err) => console.error('Erro ao carregar produto', err),
     });
   }
 
@@ -46,15 +67,23 @@ export class AddProductComponent implements OnInit {
 
     const produto = this.productForm.value;
 
+    if (this.isEditMode && this.produtoId) {
+      this.produtoService.atualizarProduto(this.produtoId, produto).subscribe({
+        next: () => {
+          alert('Produto atualizado com sucesso!');
+          this.router.navigate(['/gerente/produtos']);
+        },
+        error: () => alert('Erro ao atualizar produto'),
+      });
+      return;
+    }
+
     this.produtoService.criarProduto(produto).subscribe({
       next: () => {
         alert('Produto criado com sucesso!');
         this.productForm.reset();
       },
-      error: (erro) => {
-        console.error(erro);
-        alert('Erro ao criar produto');
-      },
+      error: () => alert('Erro ao criar produto'),
     });
   }
 }

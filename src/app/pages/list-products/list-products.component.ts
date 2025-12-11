@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { ProdutoServiceService } from '../../services/produto-service.service';
 import { Produto } from '../../models/Produto.model';
@@ -17,7 +17,8 @@ export class ListProductsComponent implements OnInit {
   constructor(
     private produtoService: ProdutoServiceService,
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private route: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
@@ -88,4 +89,8 @@ export class ListProductsComponent implements OnInit {
       console.warn('Cargo não autorizado:', role);
     }
   }
+  
+editarProduto(id: string) {
+  this.router.navigate(['../edit-product', id], { relativeTo: this.route });
+}
 }
